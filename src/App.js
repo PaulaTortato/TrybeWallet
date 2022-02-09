@@ -5,9 +5,7 @@ import Login from './pages/Login';
 class App extends React.Component {
   render() {
     return (
-    <>
       <Route exact path="/" component={ Login } />
-    </>
     );
   }
 }

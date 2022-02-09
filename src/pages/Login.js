@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { userLogin } from '../actions';
+
+const MIN_CHAR = 6;
 
 class Login extends React.Component {
   constructor() {
@@ -12,14 +15,14 @@ class Login extends React.Component {
       email: '',
       password: '',
       disabled: true,
-    }
+    };
   }
 
   inputCheck() {
     const { password, email } = this.state;
     // Referências para o regex do email: https://stackoverflow.com/questions/46155/whats-the-best-way-to-validate-an-email-address-in-javascript
     // e: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Regular_Expressions
-    if (email.match(/^[^\s@]+@[^\s@]+\.com+$/) && password.length >= 6) {
+    if (email.match(/^[^\s@]+@[^\s@]+\.com+$/) && password.length >= MIN_CHAR) {
       this.setState({ disabled: false });
     } else {
       this.setState({ disabled: true });
@@ -38,31 +41,51 @@ class Login extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const { history, handleLogin } = this.props;
-    handleLogin(this.state.email);
+    const { email } = this.state;
+    handleLogin(email);
     history.push('/carteira');
   }
 
   render() {
     const { disabled } = this.state;
     return (
-    <form>
-      <h1>Login</h1>
-      <label htmlFor="email">
-        Email
-        <input type="email" id="email" data-testid="email-input" onChange={ this.handleChange } onKeyUp={ this.handleChange } />
-      </label>
-      <label htmlFor="password">
-        Senha
-        <input type="password" id="password" data-testid="password-input" onChange={ this.handleChange } onKeyUp={ this.handleChange } />
-      </label>
-      <button type="submit" disabled={ disabled } onClick={ this.handleSubmit }>Entrar</button>
-    </form>
-    )
+      <form>
+        <h1>Login</h1>
+        <label htmlFor="email">
+          Email
+          <input
+            type="email"
+            id="email"
+            data-testid="email-input"
+            onChange={ this.handleChange }
+            onKeyUp={ this.handleChange }
+          />
+        </label>
+        <label htmlFor="password">
+          Senha
+          <input
+            type="password"
+            id="password"
+            data-testid="password-input"
+            onChange={ this.handleChange }
+            onKeyUp={ this.handleChange }
+          />
+        </label>
+        <button type="submit" disabled={ disabled } onClick={ this.handleSubmit }>
+          Entrar
+        </button>
+      </form>
+    );
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
   handleLogin: (email) => dispatch(userLogin(email)),
-})
+});
+
+Login.propTypes = {
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
+  handleLogin: PropTypes.func.isRequired,
+};
 
 export default connect(null, mapDispatchToProps)(Login);
