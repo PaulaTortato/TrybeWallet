@@ -47,7 +47,7 @@ class Login extends React.Component {
   }
 
   render() {
-    const { disabled } = this.state;
+    const { email, password, disabled } = this.state;
     return (
       <form>
         <h1>Login</h1>
@@ -57,6 +57,7 @@ class Login extends React.Component {
             type="email"
             id="email"
             data-testid="email-input"
+            value={ email }
             onChange={ this.handleChange }
             onKeyUp={ this.handleChange }
           />
@@ -67,6 +68,7 @@ class Login extends React.Component {
             type="password"
             id="password"
             data-testid="password-input"
+            value={ password }
             onChange={ this.handleChange }
             onKeyUp={ this.handleChange }
           />
