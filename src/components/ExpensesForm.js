@@ -141,9 +141,9 @@ const mapStateToProps = (state) => ({
   options: state.wallet.options,
 });
 
-const mapDispatchToProps = (dispacth) => ({
-  handleRequest: () => dispacth(requestRates()),
-  handleExpensesChange: (expense) => dispacth(expensesChange(expense)),
+const mapDispatchToProps = (dispatch) => ({
+  handleRequest: () => dispatch(requestRates()),
+  handleExpensesChange: (expense) => dispatch(expensesChange(expense)),
 });
 
 ExpensesForm.defaultProps = {

@@ -1,8 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { expensesRemove } from '../actions';
 
 class ExpensesTable extends React.Component {
+  constructor() {
+    super();
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidUpdate() {
+    const { totalCheck } = this.props;
+    totalCheck();
+  }
+
+  handleClick({ target }) {
+    const { handleDelete } = this.props;
+    const { id } = target.parentElement.parentElement;
+    handleDelete(id);
+  }
+
   render() {
     const { expenses } = this.props;
     return (
@@ -23,7 +40,7 @@ class ExpensesTable extends React.Component {
         </thead>
         <tbody>
           { expenses.map((expense) => (
-            <tr key={ expense.id }>
+            <tr key={ expense.id } id={ expense.id }>
               <td>{expense.description}</td>
               <td>{expense.tag}</td>
               <td>{expense.method}</td>
@@ -41,7 +58,15 @@ class ExpensesTable extends React.Component {
                   .toFixed(2)}
               </td>
               <td>Real</td>
-              <td />
+              <td>
+                <button
+                  type="button"
+                  data-testid="delete-btn"
+                  onClick={ this.handleClick }
+                >
+                  Deletar
+                </button>
+              </td>
             </tr>
           )) }
         </tbody>
@@ -54,8 +79,14 @@ const mapStateToProps = (state) => ({
   expenses: state.wallet.expenses,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  handleDelete: (id) => dispatch(expensesRemove(id)),
+});
+
 ExpensesTable.propTypes = {
   expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleDelete: PropTypes.func.isRequired,
+  totalCheck: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(ExpensesTable);
+export default connect(mapStateToProps, mapDispatchToProps)(ExpensesTable);

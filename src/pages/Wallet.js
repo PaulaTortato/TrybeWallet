@@ -13,13 +13,21 @@ class Wallet extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.totalCheck();
+  }
+
   totalCheck() {
     const { expenses } = this.props;
     let total = 0;
-    expenses.forEach((expense) => {
-      total += expense.value * expense.exchangeRates[expense.currency].ask;
-    });
-    this.setState({ total });
+    if (expenses.length === 0) {
+      this.setState({ total });
+    } else {
+      expenses.forEach((expense) => {
+        total += expense.value * expense.exchangeRates[expense.currency].ask;
+      });
+      this.setState({ total });
+    }
   }
 
   render() {
@@ -47,7 +55,7 @@ class Wallet extends React.Component {
           <ExpensesForm totalCheck={ this.totalCheck } />
         </section>
         <section>
-          <ExpensesTable />
+          <ExpensesTable totalCheck={ this.totalCheck } />
         </section>
       </div>
     );
