@@ -22,7 +22,7 @@ class Login extends React.Component {
     const { password, email } = this.state;
     // Referências para o regex do email: https://stackoverflow.com/questions/46155/whats-the-best-way-to-validate-an-email-address-in-javascript
     // e: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Regular_Expressions
-    if (email.match(/^[^\s@]+@[^\s@]+\.com+$/) && password.length >= MIN_CHAR) {
+    if (email.match(/^[^\s@]+@[^\s@]+\.com$/) && password.length >= MIN_CHAR) {
       this.setState({ disabled: false });
     } else {
       this.setState({ disabled: true });

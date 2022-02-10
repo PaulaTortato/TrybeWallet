@@ -1,13 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import ExpensesForm from '../components/ExpensesForm';
 
 class Wallet extends React.Component {
   constructor() {
     super();
+    this.totalCheck = this.totalCheck.bind(this);
     this.state = {
       total: 0,
     };
+  }
+
+  totalCheck() {
+    const { expenses } = this.props;
+    let total = 0;
+    expenses.forEach((expense) => {
+      total += expense.value * expense.exchangeRates[expense.currency].ask;
+    });
+    this.setState({ total });
   }
 
   render() {
@@ -25,12 +36,15 @@ class Wallet extends React.Component {
             </h4>
             <h4 data-testid="total-field">
               Despesa Total: $
-              { total }
+              { total.toFixed(2) }
               { ' ' }
               <span data-testid="header-currency-field">BRL</span>
             </h4>
           </section>
         </header>
+        <section>
+          <ExpensesForm totalCheck={ this.totalCheck } />
+        </section>
       </div>
     );
   }
@@ -38,10 +52,12 @@ class Wallet extends React.Component {
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
+  expenses: state.wallet.expenses,
 });
 
 Wallet.propTypes = {
   email: PropTypes.string.isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps)(Wallet);
