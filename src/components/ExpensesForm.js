@@ -37,7 +37,7 @@ class ExpensesForm extends React.Component {
     });
   }
 
-  teste() {
+  exchangeRates() {
     const { currencies } = this.props;
     // Referência para uso do Object.assign: https://stackoverflow.com/questions/40848348/spread-an-array-of-objects-into-a-parent-object
     return Object.assign({}, ...currencies);
@@ -58,7 +58,7 @@ class ExpensesForm extends React.Component {
       currency,
       method,
       tag,
-      exchangeRates: this.teste(),
+      exchangeRates: this.exchangeRates(),
     });
     this.setState({
       value: 0,
