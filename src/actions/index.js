@@ -1,6 +1,7 @@
 export const USER_LOGIN = 'USER_LOGIN';
 export const EXPENSES_ADD = 'EXPENSES_ADD';
 export const EXPENSES_REMOVE = 'EXPENSES_REMOVE';
+export const EXPENSES_EDIT = 'EXPENSES_EDIT';
 export const REQUEST_SUCCESS = 'REQUEST_SUCCESS';
 export const REQUEST_FAIL = 'REQUEST_FAIL';
 
@@ -16,6 +17,11 @@ export const expensesChange = (payload) => ({
 
 export const expensesRemove = (payload) => ({
   type: EXPENSES_REMOVE,
+  payload,
+});
+
+export const expensesEdit = (payload) => ({
+  type: EXPENSES_EDIT,
   payload,
 });
 

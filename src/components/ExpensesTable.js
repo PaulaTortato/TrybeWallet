@@ -21,7 +21,7 @@ class ExpensesTable extends React.Component {
   }
 
   render() {
-    const { expenses } = this.props;
+    const { expenses, handleEdit } = this.props;
     return (
       // Referência para tabelas em js: https://www.w3schools.com/html/html_tables.asp
       <table>
@@ -61,6 +61,13 @@ class ExpensesTable extends React.Component {
               <td>
                 <button
                   type="button"
+                  data-testid="edit-btn"
+                  onClick={ () => handleEdit(expense.id) }
+                >
+                  Editar
+                </button>
+                <button
+                  type="button"
                   data-testid="delete-btn"
                   onClick={ this.handleClick }
                 >
@@ -87,6 +94,7 @@ ExpensesTable.propTypes = {
   expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
   handleDelete: PropTypes.func.isRequired,
   totalCheck: PropTypes.func.isRequired,
+  handleEdit: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExpensesTable);

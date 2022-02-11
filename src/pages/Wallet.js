@@ -3,13 +3,18 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ExpensesForm from '../components/ExpensesForm';
 import ExpensesTable from '../components/ExpensesTable';
+import EditForm from '../components/EditForm';
 
 class Wallet extends React.Component {
   constructor() {
     super();
     this.totalCheck = this.totalCheck.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.editFinish = this.editFinish.bind(this);
     this.state = {
       total: 0,
+      edit: false,
+      editId: '',
     };
   }
 
@@ -30,9 +35,17 @@ class Wallet extends React.Component {
     }
   }
 
+  handleEdit(id) {
+    this.setState({ edit: true, editId: id });
+  }
+
+  editFinish() {
+    this.setState({ edit: false, editId: '' });
+  }
+
   render() {
     const { email } = this.props;
-    const { total } = this.state;
+    const { total, edit, editId } = this.state;
     return (
       <div>
         <header>
@@ -52,10 +65,16 @@ class Wallet extends React.Component {
           </section>
         </header>
         <section>
-          <ExpensesForm totalCheck={ this.totalCheck } />
+          {edit ? (
+            <EditForm
+              totalCheck={ this.totalCheck }
+              editId={ editId }
+              editFinish={ this.editFinish }
+            />)
+            : <ExpensesForm totalCheck={ this.totalCheck } />}
         </section>
         <section>
-          <ExpensesTable totalCheck={ this.totalCheck } />
+          <ExpensesTable totalCheck={ this.totalCheck } handleEdit={ this.handleEdit } />
         </section>
       </div>
     );
