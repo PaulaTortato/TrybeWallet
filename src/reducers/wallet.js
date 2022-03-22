@@ -13,7 +13,7 @@ const INITIAL_STATE = {
 };
 
 const wallet = (state = INITIAL_STATE, action) => {
-  // Agradecimento ao colega Rafael de Jesus por explicar a forma certa de organizar o estado: https://trybecourse.slack.com/archives/C02EZT1EJSY/p1644517474488849
+  // Agradecimento ao colega Rafael de Jesus por explicar a forma certa de organizar o estado
   switch (action.type) {
   case REQUEST_SUCCESS:
     return {
