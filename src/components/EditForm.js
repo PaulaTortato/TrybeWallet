@@ -2,6 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { requestRates, expensesEdit } from '../actions';
+import Value from './Form Inputs/Value';
+import Description from './Form Inputs/Description';
+import Currency from './Form Inputs/Currency';
+import Method from './Form Inputs/Method';
+import Tag from './Form Inputs/Tag';
 
 const METHOD = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
 const TAG = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
@@ -73,63 +78,13 @@ class EditForm extends React.Component {
     const { value, description, currency, method, tag } = this.state;
     const { currencies } = this.props;
     return (
-      <form>
-        <label htmlFor="value">
-          Valor
-          <input
-            type="number"
-            data-testid="value-input"
-            id="value"
-            value={ value }
-            onChange={ this.handleChange }
-          />
-        </label>
-        <label htmlFor="description">
-          Descrição
-          <input
-            type="text"
-            data-testid="description-input"
-            id="description"
-            value={ description }
-            onChange={ this.handleChange }
-          />
-        </label>
-        <label htmlFor="currency">
-          Moeda
-          <select
-            data-testid="currency-input"
-            id="currency"
-            value={ currency }
-            onChange={ this.handleChange }
-          >
-            {currencies.map((option) => (
-              <option key={ option } data-testid={ option }>{option}</option>
-            ))}
-          </select>
-        </label>
-        <label htmlFor="method">
-          Método
-          <select
-            data-testid="method-input"
-            id="method"
-            value={ method }
-            onChange={ this.handleChange }
-          >
-            {METHOD.map((option) => <option key={ option }>{option}</option>)}
-          </select>
-        </label>
-        <label htmlFor="tag">
-          Categoria
-          <select
-            data-testid="tag-input"
-            id="tag"
-            value={ tag }
-            onChange={ this.handleChange }
-          >
-            {TAG.map((option) => <option key={ option }>{ option }</option>)}
-          </select>
-        </label>
-        <button type="button" onClick={ this.handleClick }>Editar despesa</button>
+      <form className="form-edit">
+        <Value value={ value } handleChange={ this.handleChange } />
+        <Description description={ description } handleChange={ this.handleChange } />
+        <Currency currency={ currency } currencies={ currencies } handleChange={ this.handleChange } />
+        <Method method={ method } METHOD={ METHOD } handleChange={ this.handleChange } />
+        <Tag tag={ tag } TAG={ TAG } handleChange={ this.handleChange } />
+        <button type="button" onClick={ this.handleClick } className="btn">Editar despesa</button>
       </form>
     );
   }

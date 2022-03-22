@@ -24,7 +24,7 @@ class ExpensesTable extends React.Component {
     const { expenses, handleEdit } = this.props;
     return (
       // Referência para tabelas em js: https://www.w3schools.com/html/html_tables.asp
-      <table>
+      <table className="table table-hover table-striped">
         <thead>
           <tr>
             <th>Descrição</th>
@@ -62,6 +62,7 @@ class ExpensesTable extends React.Component {
                 <button
                   type="button"
                   data-testid="edit-btn"
+                  className="btn"
                   onClick={ () => handleEdit(expense.id) }
                 >
                   Editar
@@ -69,6 +70,7 @@ class ExpensesTable extends React.Component {
                 <button
                   type="button"
                   data-testid="delete-btn"
+                  className="btn"
                   onClick={ this.handleClick }
                 >
                   Deletar
