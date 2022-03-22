@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import ExpensesForm from '../components/ExpensesForm';
 import ExpensesTable from '../components/ExpensesTable';
 import EditForm from '../components/EditForm';
+import '../styles/Wallet.css';
+import Header from '../components/Header';
 
 class Wallet extends React.Component {
   constructor() {
@@ -47,23 +49,8 @@ class Wallet extends React.Component {
     const { email } = this.props;
     const { total, edit, editId } = this.state;
     return (
-      <div>
-        <header>
-          <h1>Carteira</h1>
-          <section>
-            <h4 data-testid="email-field">
-              Email:
-              { ' ' }
-              { email }
-            </h4>
-            <h4 data-testid="total-field">
-              Despesa Total: $
-              { total.toFixed(2) }
-              { ' ' }
-              <span data-testid="header-currency-field">BRL</span>
-            </h4>
-          </section>
-        </header>
+      <main>
+        <Header email={ email } total={ total } />
         <section>
           {edit ? (
             <EditForm
@@ -76,7 +63,7 @@ class Wallet extends React.Component {
         <section>
           <ExpensesTable totalCheck={ this.totalCheck } handleEdit={ this.handleEdit } />
         </section>
-      </div>
+      </main>
     );
   }
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { userLogin } from '../actions';
+import '../styles/Login.css';
 
 const MIN_CHAR = 6;
 
@@ -49,34 +50,47 @@ class Login extends React.Component {
   render() {
     const { email, password, disabled } = this.state;
     return (
-      <form>
-        <h1>Login</h1>
-        <label htmlFor="email">
-          Email
-          <input
-            type="email"
-            id="email"
-            data-testid="email-input"
-            value={ email }
-            onChange={ this.handleChange }
-            onKeyUp={ this.handleChange }
-          />
-        </label>
-        <label htmlFor="password">
-          Senha
-          <input
-            type="password"
-            id="password"
-            data-testid="password-input"
-            value={ password }
-            onChange={ this.handleChange }
-            onKeyUp={ this.handleChange }
-          />
-        </label>
-        <button type="submit" disabled={ disabled } onClick={ this.handleSubmit }>
-          Entrar
-        </button>
-      </form>
+      <main className="main">
+        <h1>TybeWallet</h1>
+        <form className="form">
+          <h3 className="form-title">Login</h3>
+          <label htmlFor="email" className="form-label">
+            Email
+            <input
+              type="email"
+              id="email"
+              data-testid="email-input"
+              className="form-control"
+              value={ email }
+              onChange={ this.handleChange }
+              onKeyUp={ this.handleChange }
+            />
+          </label>
+          <label htmlFor="password" className="form-label">
+            Senha
+            <input
+              type="password"
+              id="password"
+              data-testid="password-input"
+              className="form-control"
+              value={ password }
+              onChange={ this.handleChange }
+              onKeyUp={ this.handleChange }
+            />
+            <div id="passwordHelpBlock" className="form-text">
+            Your password must be 6 characters long.
+            </div>
+          </label>
+          <button
+            type="submit"
+            disabled={ disabled }
+            onClick={ this.handleSubmit }
+            className="btn button"
+          >
+            Entrar
+          </button>
+        </form>
+      </main>
     );
   }
 }

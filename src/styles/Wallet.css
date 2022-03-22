@@ -1,0 +1,17 @@
+.header {
+  width: 96%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1%;
+  margin-top: 1%;
+}
+
+.form-expenses, .form-edit {
+  display: flex;
+  justify-content: space-around;
+}
+
+.form-edit {
+  background-color: lightgreen;
+}
