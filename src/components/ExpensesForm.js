@@ -8,8 +8,8 @@ import Currency from './Form Inputs/Currency';
 import Method from './Form Inputs/Method';
 import Tag from './Form Inputs/Tag';
 
-const METHOD = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
-const TAG = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
+const METHOD = ['Paper money', 'Credit card', 'Debit card'];
+const TAG = ['Food', 'Leisure', 'Work', 'Transportation', 'Health'];
 
 class ExpensesForm extends React.Component {
   constructor() {
@@ -79,7 +79,7 @@ class ExpensesForm extends React.Component {
         <Currency currency={ currency } currencies={ currencies } handleChange={ this.handleChange } />
         <Method method={ method } METHOD={ METHOD } handleChange={ this.handleChange } />
         <Tag tag={ tag } TAG={ TAG } handleChange={ this.handleChange } />
-        <button type="button" onClick={ this.handleClick } className="btn">Adicionar despesa</button>
+        <button type="button" onClick={ this.handleClick } className="btn add-btn">Add expense</button>
       </form>
     );
   }

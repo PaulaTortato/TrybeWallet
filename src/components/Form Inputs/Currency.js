@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 
 class Currency extends Component {
   render() {
-    const { currencies, currency, handleChange } = this.props;
+    const { currencies, currency, handleChange, edit } = this.props;
     return (
       <div className="mb-3">
-          <label htmlFor="currency" className="form-label">
-            Moeda
+          <label htmlFor="currency" className={ edit ? "form-label edit-text" : "form-label" }>
+            Currency
             <select
               data-testid="currency-input"
               className="form-control"

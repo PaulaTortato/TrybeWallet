@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 
 class Method extends Component {
   render() {
-    const { method, METHOD, handleChange } = this.props;
+    const { method, METHOD, handleChange, edit } = this.props;
     return (
       <div className="mb-3">
-      <label htmlFor="method" className="form-label">
-        Método
+      <label htmlFor="method" className={ edit ? "form-label edit-text" : "form-label" }>
+        Method
         <select
           data-testid="method-input"
           className="form-control"
