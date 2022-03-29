@@ -1,5 +1,5 @@
 .header {
-  width: 96%;
+  width: 93%;
   margin: auto;
   display: flex;
   justify-content: space-between;
@@ -10,8 +10,48 @@
 .form-expenses, .form-edit {
   display: flex;
   justify-content: space-around;
+  align-items: baseline;
+  padding-top: 0.5%;
 }
 
 .form-edit {
-  background-color: lightgreen;
+  background-color: rgba(96, 108, 56, 0.80);
+}
+
+.add-btn {
+  background-color: rgb(40, 54, 24);
+  color: rgb(254, 250, 224);
+  height: 75%;
+}
+
+.add-btn:hover {
+  background-color: rgb(96, 108, 56);
+  color: rgb(254, 250, 224);
+}
+
+.edit-btn {
+  background-color: rgb(254, 250, 224);
+  color: rgb(40, 54, 24);
+}
+
+.edit-btn:hover {
+  background-color: rgb(250, 248, 236);
+  color: rgb(40, 54, 24);
+}
+
+.edit-text {
+  color: rgb(254, 250, 224);
+}
+
+.edit {
+  background-color: rgb(235, 235, 0);
+}
+
+.remove {
+  background-color: rgb(228, 0, 0);
+}
+
+.btns {
+  display: flex;
+  justify-content: space-evenly;
 }

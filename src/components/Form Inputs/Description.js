@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 
 class Description extends Component {
   render() {
-    const { description, handleChange } = this.props;
+    const { description, handleChange, edit } = this.props;
     return (
       <div className="mb-3">
-      <label htmlFor="description" className="form-label">
-        Descrição
+      <label htmlFor="description" className={ edit ? "form-label edit-text" : "form-label" }>
+        Description
         <input
           type="text"
           data-testid="description-input"

@@ -8,8 +8,8 @@ import Currency from './Form Inputs/Currency';
 import Method from './Form Inputs/Method';
 import Tag from './Form Inputs/Tag';
 
-const METHOD = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
-const TAG = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
+const METHOD = ['Paper money', 'Credit card', 'Debit card'];
+const TAG = ['Food', 'Leisure', 'Work', 'Transportation', 'Health'];
 
 class EditForm extends React.Component {
   constructor() {
@@ -79,12 +79,12 @@ class EditForm extends React.Component {
     const { currencies } = this.props;
     return (
       <form className="form-edit">
-        <Value value={ value } handleChange={ this.handleChange } />
-        <Description description={ description } handleChange={ this.handleChange } />
-        <Currency currency={ currency } currencies={ currencies } handleChange={ this.handleChange } />
-        <Method method={ method } METHOD={ METHOD } handleChange={ this.handleChange } />
-        <Tag tag={ tag } TAG={ TAG } handleChange={ this.handleChange } />
-        <button type="button" onClick={ this.handleClick } className="btn">Editar despesa</button>
+        <Value value={ value } handleChange={ this.handleChange } edit />
+        <Description description={ description } handleChange={ this.handleChange } edit />
+        <Currency currency={ currency } currencies={ currencies } handleChange={ this.handleChange } edit />
+        <Method method={ method } METHOD={ METHOD } handleChange={ this.handleChange } edit />
+        <Tag tag={ tag } TAG={ TAG } handleChange={ this.handleChange } edit />
+        <button type="button" onClick={ this.handleClick } className="btn edit-btn">Edit expense</button>
       </form>
     );
   }

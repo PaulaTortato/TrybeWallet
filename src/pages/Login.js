@@ -44,14 +44,14 @@ class Login extends React.Component {
     const { history, handleLogin } = this.props;
     const { email } = this.state;
     handleLogin(email);
-    history.push('/carteira');
+    history.push('/wallet');
   }
 
   render() {
     const { email, password, disabled } = this.state;
     return (
       <main className="main">
-        <h1>TybeWallet</h1>
+        <h1 className="app-title">TybeWallet</h1>
         <form className="form">
           <h3 className="form-title">Login</h3>
           <label htmlFor="email" className="form-label">
@@ -67,7 +67,7 @@ class Login extends React.Component {
             />
           </label>
           <label htmlFor="password" className="form-label">
-            Senha
+            Password
             <input
               type="password"
               id="password"

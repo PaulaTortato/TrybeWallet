@@ -2,6 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { expensesRemove } from '../actions';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faPenToSquare, faTrashCan);
 
 class ExpensesTable extends React.Component {
   constructor() {
@@ -27,15 +32,15 @@ class ExpensesTable extends React.Component {
       <table className="table table-hover table-striped">
         <thead>
           <tr>
-            <th>Descrição</th>
+            <th>Description</th>
             <th>Tag</th>
-            <th>Método de pagamento</th>
-            <th>Valor</th>
-            <th>Moeda</th>
-            <th>Câmbio utilizado</th>
-            <th>Valor convertido</th>
-            <th>Moeda de conversão</th>
-            <th>Editar/Excluir</th>
+            <th>Method of payment</th>
+            <th>Amount</th>
+            <th>Currency</th>
+            <th>Rate</th>
+            <th>Converted amount</th>
+            <th>Currency converted to</th>
+            <th>Edit/Remove</th>
           </tr>
         </thead>
         <tbody>
@@ -58,22 +63,22 @@ class ExpensesTable extends React.Component {
                   .toFixed(2)}
               </td>
               <td>Real</td>
-              <td>
+              <td className="btns">
                 <button
                   type="button"
                   data-testid="edit-btn"
-                  className="btn"
+                  className="btn edit"
                   onClick={ () => handleEdit(expense.id) }
                 >
-                  Editar
+                  <FontAwesomeIcon icon="fa-solid fa-pen-to-square" />
                 </button>
                 <button
                   type="button"
                   data-testid="delete-btn"
-                  className="btn"
+                  className="btn remove"
                   onClick={ this.handleClick }
                 >
-                  Deletar
+                  <FontAwesomeIcon icon="fa-solid fa-trash-can" />
                 </button>
               </td>
             </tr>

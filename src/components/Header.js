@@ -5,13 +5,13 @@ class Header extends Component {
     const { email, total } = this.props;
     return (
       <header className="header">
-        <h1>Carteira</h1>
+        <h1>Wallet</h1>
         <div className="info">
           <h5 data-testid="email-field">
             { `Email: ${email}` }
           </h5>
           <h5 data-testid="total-field">
-            { `Despesa Total: $${total.toFixed(2)} BRL` }
+            { `Total Expense: $${total.toFixed(2)} BRL` }
           </h5>
         </div>
       </header>
